@@ -12,7 +12,7 @@ VALUES
 (2, 'Asif Haque', 'asif@mail.com', 'Football Fan', '+8801722222222'),
 (3, 'Sajjad Rahman', 'sajjad@mail.com', 'Ticket Manager', '+8801733333333'),
 (4, 'Jannat Ara', 'jannat@mail.com', 'Football Fan', NULL);
---match table 
+--match 
 CREATE TABLE Matches (
     match_id INT PRIMARY KEY,
     fixture VARCHAR(100) NOT NULL,
@@ -67,8 +67,7 @@ SELECT
     user_id,
     match_id,
     COALESCE(payment_status, 'Action Required') AS systematic_status
-FROM Bookings
-WHERE payment_status IS NULL;
+FROM Bookings WHERE payment_status IS NULL;
 --4
 SELECT booking_id, full_name, fixture, total_cost
 FROM Bookings
@@ -88,15 +87,12 @@ SELECT
     total_cost
 FROM 
     Bookings
-WHERE 
-    total_cost > (SELECT AVG(total_cost) FROM Bookings);
+WHERE total_cost > (SELECT AVG(total_cost) FROM Bookings);
     --7
 SELECT 
     match_id, 
     fixture, 
     base_ticket_price
-FROM 
-    Matches
-ORDER BY 
-    base_ticket_price DESC
+FROM Matches
+ORDER BY base_ticket_price DESC
 LIMIT 2 OFFSET 1;
