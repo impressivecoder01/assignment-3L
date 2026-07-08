@@ -76,3 +76,17 @@ INNER JOIN Users
 ON Bookings.user_id = Users.user_id
 INNER JOIN Matches
 ON Bookings.match_id = Matches.match_id;
+--5
+SELECT user_id, full_name, booking_id
+FROM Users
+LEFT JOIN Bookings
+ON Users.user_id = Bookings.user_id;
+--6
+SELECT 
+    booking_id, 
+    match_id, 
+    total_cost
+FROM 
+    Bookings
+WHERE 
+    total_cost > (SELECT AVG(total_cost) FROM Bookings);
