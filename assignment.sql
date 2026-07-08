@@ -69,3 +69,10 @@ SELECT
     COALESCE(payment_status, 'Action Required') AS systematic_status
 FROM Bookings
 WHERE payment_status IS NULL;
+--4
+SELECT booking_id, full_name, fixture, total_cost
+FROM Bookings
+INNER JOIN Users
+ON Bookings.user_id = Users.user_id
+INNER JOIN Matches
+ON Bookings.match_id = Matches.match_id;
